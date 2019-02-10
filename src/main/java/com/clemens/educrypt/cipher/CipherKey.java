@@ -3,15 +3,17 @@ package com.clemens.educrypt.cipher;
 public class CipherKey {
 
     private String cipherKey;
-    private CipherKeyLength cipherKeyLength;
+    private Length cipherKeyLength;
+
+    public enum Length {DES_56, AES_128, AES_192, AES_256}
 
     private CipherKey() {}
-    private CipherKey(String cipherKey, CipherKeyLength cipherKeyLength) {
+    private CipherKey(String cipherKey, Length cipherKeyLength) {
         this.cipherKey = cipherKey;
         this.cipherKeyLength = cipherKeyLength;
     }
 
-    public static CipherKey createKey(String cipherKey, CipherKeyLength cipherKeyLength) {
+    public static CipherKey create(String cipherKey, Length cipherKeyLength) {
         return new CipherKey(cipherKey, cipherKeyLength);
     }
 
@@ -19,7 +21,7 @@ public class CipherKey {
         return cipherKey;
     }
 
-    public CipherKeyLength getKeyLength() {
+    public Length getKeyLength() {
         return cipherKeyLength;
     }
 }

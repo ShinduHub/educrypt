@@ -2,21 +2,21 @@ package com.clemens.educrypt;
 
 import com.clemens.educrypt.cipher.Cipher;
 import com.clemens.educrypt.cipher.CipherKey;
-import com.clemens.educrypt.cipher.CipherMode;
 import com.clemens.educrypt.cipher.ciphers.CipherAES;
 import com.clemens.educrypt.cipher.ciphers.CipherDES;
-
-import java.util.Arrays;
 
 public class Educrypt {
 
     private CipherKey cipherKey;
-    private CipherMode cipherMode;
+    private Mode cipherMode;
     private Cipher cipher;
 
-    private Educrypt() {}
+    public enum Mode {AES, DES}
 
-    private Educrypt(CipherKey cipherKey, CipherMode cipherMode) {
+    private Educrypt() {
+    }
+
+    private Educrypt(CipherKey cipherKey, Mode cipherMode) {
         this.cipherKey = cipherKey;
         this.cipherMode = cipherMode;
         switch (cipherMode) {
@@ -28,7 +28,7 @@ public class Educrypt {
         }
     }
 
-    public static Educrypt create(CipherKey cipherkey, CipherMode cipherMode) {
+    public static Educrypt create(CipherKey cipherkey, Mode cipherMode) {
         return new Educrypt(cipherkey, cipherMode);
     }
 
@@ -38,5 +38,17 @@ public class Educrypt {
 
     public String decrypt(String data) {
         return new String(cipher.encrypt(data.getBytes(), cipherKey));
+    }
+
+    public CipherKey getCipherKey() {
+        return cipherKey;
+    }
+
+    public Mode getCipherMode() {
+        return cipherMode;
+    }
+
+    public Cipher getCipher() {
+        return cipher;
     }
 }

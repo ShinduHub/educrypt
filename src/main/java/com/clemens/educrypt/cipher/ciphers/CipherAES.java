@@ -2,9 +2,8 @@ package com.clemens.educrypt.cipher.ciphers;
 
 import com.clemens.educrypt.cipher.Cipher;
 import com.clemens.educrypt.cipher.CipherKey;
-import com.clemens.educrypt.cipher.CipherMode;
 
-public class CipherAES<T> extends Cipher {
+public class CipherAES extends Cipher {
 
     @Override
     public byte[] encrypt(byte[] data, CipherKey cipherKey) {
