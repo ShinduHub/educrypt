@@ -1,27 +1,32 @@
 package com.clemens.educrypt.cipher;
 
+import com.clemens.educrypt.Educrypt;
+
+import javax.crypto.spec.SecretKeySpec;
+
 public class CipherKey {
 
-    private String cipherKey;
-    private Length cipherKeyLength;
+    private String rawCipherKey;
+    private SecretKeySpec cipherKey;
+    private Educrypt.Mode cipherMode;
 
-    public enum Length {DES_56, AES_128, AES_192, AES_256}
-
-    private CipherKey() {}
-    private CipherKey(String cipherKey, Length cipherKeyLength) {
-        this.cipherKey = cipherKey;
-        this.cipherKeyLength = cipherKeyLength;
+    private CipherKey() {
     }
 
-    public static CipherKey create(String cipherKey, Length cipherKeyLength) {
-        return new CipherKey(cipherKey, cipherKeyLength);
+    private CipherKey(String rawCipherKey) {
+        this.rawCipherKey = rawCipherKey;
+    }
+
+    public static CipherKey create(String cipherKey) {
+        return new CipherKey(cipherKey);
+    }
+
+    public void init(Educrypt.Mode cipherMode) {
+        this.cipherMode = cipherMode;
+        cipherKey = new SecretKeySpec(rawCipherKey.getBytes(), cipherMode.toString());
     }
 
     public String getKey() {
-        return cipherKey;
-    }
-
-    public Length getKeyLength() {
-        return cipherKeyLength;
+        return rawCipherKey;
     }
 }

@@ -1,3 +1,3 @@
 # Educrypt
 
-Educational Java library which implements the Advanced Encryption Standard.
+Cryptographic Java library, which simplifies some common block ciphers for educational usage

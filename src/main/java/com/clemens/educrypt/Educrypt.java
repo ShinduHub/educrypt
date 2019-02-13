@@ -11,20 +11,19 @@ public class Educrypt {
     private Mode cipherMode;
     private Cipher cipher;
 
-    public enum Mode {AES, DES}
-
     private Educrypt() {
     }
 
     private Educrypt(CipherKey cipherKey, Mode cipherMode) {
         this.cipherKey = cipherKey;
+        cipherKey.init(cipherMode);
         this.cipherMode = cipherMode;
         switch (cipherMode) {
             case AES:
-                this.cipher = new CipherAES();
+                this.cipher = CipherAES.create();
                 break;
             case DES:
-                this.cipher = new CipherDES();
+                this.cipher = CipherDES.create();
         }
     }
 
@@ -51,4 +50,6 @@ public class Educrypt {
     public Cipher getCipher() {
         return cipher;
     }
+
+    public enum Mode {AES, DES}
 }

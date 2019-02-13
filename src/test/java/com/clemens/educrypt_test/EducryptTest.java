@@ -8,7 +8,7 @@ public class EducryptTest extends TestCase {
 
     public void test() {
 
-        Educrypt educrypt_instance = Educrypt.create(CipherKey.create("s", CipherKey.Length.DES_56),
+        Educrypt educrypt_instance = Educrypt.create(CipherKey.create("s"),
                 Educrypt.Mode.DES);
         assertEquals("hello", educrypt_instance.encrypt("hello"));
 
