@@ -59,7 +59,7 @@ public class Educrypt {
    * Encrypt a String.
    *
    * @param inputString String which will be encrypted.
-   * @return Encrypted String.
+   * @return The Encrypted String.
    */
   public String encrypt(String inputString) {
     return new String(cipher.encrypt(inputString.getBytes(StandardCharsets.UTF_8), cipherKey));
@@ -69,7 +69,7 @@ public class Educrypt {
    * Decrypt a String.
    *
    * @param inputString String which will be decrypted.
-   * @return Decrypted String.
+   * @return The Decrypted String.
    */
   public String decrypt(String inputString) {
     return new String(cipher.decrypt(inputString.getBytes(StandardCharsets.UTF_8), cipherKey));
@@ -78,7 +78,7 @@ public class Educrypt {
   /**
    * Getter for the CipherKey.
    *
-   * @return CipherKey object used.
+   * @return The CipherKey object used.
    */
   public CipherKey getCipherKey() {
     return cipherKey;
@@ -87,7 +87,7 @@ public class Educrypt {
   /**
    * Getter for the CipherAlgorithm.
    *
-   * @return CipherAlgorithm used.
+   * @return The CipherAlgorithm used.
    */
   public CipherAlgorithm getCipherAlgorithm() {
     return cipherAlgorithm;
@@ -96,7 +96,7 @@ public class Educrypt {
   /**
    * Getter for the Cipher.
    *
-   * @return Cipher object.
+   * @return The Cipher object.
    */
   public Cipher getCipher() {
     return cipher;
@@ -107,11 +107,11 @@ public class Educrypt {
    */
   public enum CipherAlgorithm {
     /**
-     * AES block cipher.
+     * AES block cipher. See {@link com.clemens.educrypt.cipher.ciphers.CipherAES}
      */
     AES,
     /**
-     * DES block cipher.
+     * DES block cipher. See {@link com.clemens.educrypt.cipher.ciphers.CipherDES}
      */
     DES
   }
