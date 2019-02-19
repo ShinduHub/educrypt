@@ -19,25 +19,25 @@ public class EducryptTest extends TestCase {
     secureRandom.nextBytes(randomByteKey);
     String randomKey = new String(randomByteKey);
 
-    Educrypt educrypt_instance_aes =
+    Educrypt educryptInstanceAes =
         Educrypt.create(CipherKey.create(randomKey), Educrypt.CipherAlgorithm.AES);
 
     String input = "hello";
-    String encrypted_aes = educrypt_instance_aes.encrypt(input);
-    String out_aes = educrypt_instance_aes.decrypt(encrypted_aes);
+    String encryptedAes = educryptInstanceAes.encrypt(input);
+    String outAes = educryptInstanceAes.decrypt(encryptedAes);
 
-    System.out.println(encrypted_aes);
-    System.out.println(out_aes);
-    assertEquals(input, out_aes);
+    System.out.println(encryptedAes);
+    System.out.println(outAes);
+    assertEquals(input, outAes);
 
-    Educrypt educrypt_instance =
+    Educrypt educryptInstanceDes =
         Educrypt.create(CipherKey.create(randomKey), Educrypt.CipherAlgorithm.DES);
 
-    String encrypted_des = educrypt_instance.encrypt(input);
-    String out_des = educrypt_instance.decrypt(encrypted_des);
+    String encryptedDes = educryptInstanceDes.encrypt(input);
+    String outDes = educryptInstanceDes.decrypt(encryptedDes);
 
-    System.out.println(encrypted_des);
-    System.out.println(out_des);
-    assertEquals(input, out_des);
+    System.out.println(encryptedDes);
+    System.out.println(outDes);
+    assertEquals(input, outDes);
   }
 }
