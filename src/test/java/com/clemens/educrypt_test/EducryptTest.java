@@ -14,30 +14,28 @@ public class EducryptTest extends TestCase {
    * Tests the library.
    */
   public void test() {
-    SecureRandom secureRandom = new SecureRandom();
-    byte[] randomByteKey = new byte[16];
-    secureRandom.nextBytes(randomByteKey);
-    String randomKey = new String(randomByteKey);
+    for (int i = 0; i < 100; i++) {
+      SecureRandom secureRandom = new SecureRandom();
 
-    Educrypt educryptInstanceAes =
-        Educrypt.create(CipherKey.create(randomKey), Educrypt.CipherAlgorithm.AES);
+      byte[] randomByteKey = new byte[512];
+      secureRandom.nextBytes(randomByteKey);
+      String randomKey = new String(randomByteKey);
 
-    String input = "hello";
-    String encryptedAes = educryptInstanceAes.encrypt(input);
-    String outAes = educryptInstanceAes.decrypt(encryptedAes);
+      byte[] randomByteString = new byte[2048];
+      secureRandom.nextBytes(randomByteString);
+      String input = new String(randomByteString);
 
-    System.out.println(encryptedAes);
-    System.out.println(outAes);
-    assertEquals(input, outAes);
+      Educrypt educryptInstanceAes =
+          Educrypt.create(CipherKey.create(randomKey), Educrypt.CipherAlgorithm.AES);
+      String encryptedAes = educryptInstanceAes.encrypt(input);
+      String outAes = educryptInstanceAes.decrypt(encryptedAes);
+      assertEquals(input, outAes);
 
-    Educrypt educryptInstanceDes =
-        Educrypt.create(CipherKey.create(randomKey), Educrypt.CipherAlgorithm.DES);
-
-    String encryptedDes = educryptInstanceDes.encrypt(input);
-    String outDes = educryptInstanceDes.decrypt(encryptedDes);
-
-    System.out.println(encryptedDes);
-    System.out.println(outDes);
-    assertEquals(input, outDes);
+      Educrypt educryptInstanceDes =
+          Educrypt.create(CipherKey.create(randomKey), Educrypt.CipherAlgorithm.DES);
+      String encryptedDes = educryptInstanceDes.encrypt(input);
+      String outDes = educryptInstanceDes.decrypt(encryptedDes);
+      assertEquals(input, outDes);
+    }
   }
 }
